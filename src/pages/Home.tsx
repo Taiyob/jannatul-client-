@@ -1,12 +1,12 @@
 import React from "react";
 import Banner from "../components/Banner";
-import Slots from "../components/Slots";
+import Services from "../components/Services";
 
 export default function Home() {
   return (
     <>
       <Banner />
-      <Slots />
+      <Services />
     </>
   );
 }

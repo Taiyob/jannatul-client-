@@ -1,22 +1,14 @@
 import React from "react";
+import { useGetSlotByServiceQuery } from "../redux/api/slot/slotApi";
+import { Link } from "react-router-dom";
 
 const ServiceCard = ({ service }) => {
-  console.log(service);
-  const { name, description, price } = service;
+  const { name, description, price, _id } = service;
+  const { data } = useGetSlotByServiceQuery(_id);
+
   return (
     <div className="relative">
-      {/* {showModal && (
-        <Modal
-          product={selectedProduct}
-          onClose={handleCloseModal}
-          handleAddToCart={() => {}}
-        />
-      )} */}
-
-      <div
-        //onClick={() => handleShowModal(product)}
-        className="border rounded-lg shadow-lg overflow-hidden bg-white transition-transform transform hover:scale-105 hover:shadow-2xl flex flex-col h-full"
-      >
+      <div className="border rounded-lg shadow-lg overflow-hidden bg-white transition-transform transform hover:scale-105 hover:shadow-2xl flex flex-col h-full">
         <img
           src=""
           alt=""
@@ -26,15 +18,12 @@ const ServiceCard = ({ service }) => {
           <h3 className="text-xl font-semibold text-green-700 mb-2">{name}</h3>
           <p className="text-gray-700 mb-4 flex-grow">{description}</p>
           <p className="text-lg font-bold text-red-600 mb-4">{price}</p>
-          <button
-            // onClick={(e) => {
-            //   e.stopPropagation();
-            //   handleAddToCart(product);
-            // }}
+          <Link
+            to="/slots/:id"
             className="bg-gradient-to-r from-blue-500 to-purple-600 text-white font-semibold py-2 px-4 rounded-lg transition duration-300 shadow-md hover:shadow-lg"
           >
             Add to Cart
-          </button>
+          </Link>
         </div>
       </div>
     </div>
