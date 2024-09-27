@@ -1,8 +1,7 @@
 import { createSlice } from "@reduxjs/toolkit";
 
-// Define the initial state
 const initialState = {
-  products: [] as any, // array to store the cart products
+  products: [] as any,
   selectedItems: 0,
   totalPrice: 0,
   tax: 0,
@@ -16,16 +15,15 @@ export const cartSlice = createSlice({
   reducers: {
     addToCart: (state, action) => {
       const isExist = state.products.find(
-        (product) =>
-          product.id === action.payload.id &&
-          product.date === action.payload.date
+        (product) => product.id === action.payload.id
       );
 
       if (!isExist) {
         state.products.push({ ...action.payload, quantity: 1 });
-      } else {
-        isExist.quantity += 1;
       }
+      // } else {
+      //   isExist.quantity += 1;
+      // }
 
       state.selectedItems = selectSelectedItems(state);
       state.totalPrice = selectTotalPrice(state);
@@ -34,10 +32,7 @@ export const cartSlice = createSlice({
     },
     updateQuantity: (state, action) => {
       const products = state.products.map((product) => {
-        if (
-          product.id === action.payload.id &&
-          product.date === action.payload.date
-        ) {
+        if (product.id === action.payload.id) {
           if (action.payload.type === "increment") {
             product.quantity += 1;
           } else if (

@@ -3,9 +3,9 @@ import { useDispatch } from "react-redux";
 import { toast } from "sonner";
 import { addToCart } from "../redux/features/cartSlice";
 
-const SlotCard = ({ slot }) => {
+const SlotCard = ({ slot, onSelect, disabled }) => {
   const dispatch = useDispatch();
-  const { date, startTime, endTime } = slot;
+  const { date, startTime, endTime, _id } = slot;
 
   const handleAddToCart = () => {
     dispatch(addToCart(slot));
@@ -14,6 +14,8 @@ const SlotCard = ({ slot }) => {
     toast.success(
       `Slot on ${date} from ${startTime} to ${endTime} added to cart!`
     );
+
+    onSelect(_id);
   };
 
   return (
@@ -31,9 +33,12 @@ const SlotCard = ({ slot }) => {
           </p>
           <button
             onClick={handleAddToCart}
-            className="bg-gradient-to-r from-blue-500 to-purple-600 text-white font-semibold py-2 px-4 rounded-lg transition duration-300 shadow-md hover:shadow-lg"
+            disabled={disabled} // Disable button if prop is true
+            className={`bg-gradient-to-r from-blue-500 to-purple-600 text-white font-semibold py-2 px-4 rounded-lg transition duration-300 shadow-md hover:shadow-lg ${
+              disabled ? "cursor-not-allowed" : ""
+            }`}
           >
-            Add to Cart
+            {disabled ? "Slot Selected" : "Add to Cart"}
           </button>
         </div>
       </div>

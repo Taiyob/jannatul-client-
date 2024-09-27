@@ -4,11 +4,14 @@ import { useAppDispatch, useAppSelector } from "../redux/hooks";
 import { clearCart } from "../redux/features/cartSlice";
 
 const OrderSummary = () => {
-  const dispatch = useAppDispatch()
-    const {tax,taxRate,grandTotal,totalPrice,selectedItems}= useAppSelector((store)=>store.cart)
-    const handleClearCart=()=>{
-      dispatch(clearCart())
-    }
+  const dispatch = useAppDispatch();
+  const { tax, taxRate, grandTotal, totalPrice, selectedItems } =
+    useAppSelector((store) => store.cart);
+
+  const handleClearCart = () => {
+    dispatch(clearCart());
+  };
+
   return (
     <div className=" lg:w-80 w-full h-full bg-primary bg-opacity-35 rounded">
       <div className="px-6 py-4 space-y-10">
@@ -16,9 +19,8 @@ const OrderSummary = () => {
         <p className="text-sm text-dark mt-2">
           Selected Items : {selectedItems}
         </p>
-        <p className="text-sm text-dark mt-2">
-          Total Price : ${totalPrice.toFixed(2)}
-        </p>
+        <p className="text-sm text-dark mt-2">Total Price : ${totalPrice}</p>
+
         <p className="text-sm text-dark mt-2">
           Tax ({taxRate * 100}): ${tax.toFixed(3)}
         </p>
