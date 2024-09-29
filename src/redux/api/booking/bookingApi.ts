@@ -1,22 +1,22 @@
 import { baseApi } from "../baseApi";
 
-const serviceApi = baseApi.injectEndpoints({
+const BookingApi = baseApi.injectEndpoints({
   endpoints: (builder) => ({
-    createService: builder.mutation({
-      query: (serviceInfo) => ({
-        url: "/services",
+    createBooking: builder.mutation({
+      query: (bookingInfo) => ({
+        url: "/bookings",
         method: "POST",
-        body: serviceInfo,
+        body: bookingInfo,
       }),
     }),
-    getService: builder.query({
+    getBooking: builder.query({
       query: () => ({
         url: `/services`,
         method: "GET",
       }),
       //invalidatesTags: ["user"],
     }),
-    getSingleService: builder.query({
+    getSingleBooking: builder.query({
       query: (id) => ({
         url: `/services/${id}`,
         method: "GET",
@@ -26,8 +26,4 @@ const serviceApi = baseApi.injectEndpoints({
   }),
 });
 
-export const {
-  useCreateServiceMutation,
-  useGetServiceQuery,
-  useGetSingleServiceQuery,
-} = serviceApi;
+export const { useCreateBookingMutation } = BookingApi;

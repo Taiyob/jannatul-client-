@@ -71,3 +71,14 @@ export const selectGrandTotal = (state: any) => {
 export const { addToCart, updateQuantity, clearCart } = cartSlice.actions;
 
 export default cartSlice.reducer;
+
+/*
+ustomer: Types.ObjectId;
+  service: Types.ObjectId;
+  slot: Types.ObjectId;
+  vehicleType: VehicleType;
+  vehicleBrand: string;
+  vehicleModel: string;
+  manufacturingYear: number;
+  registrationPlate: string;
+*/

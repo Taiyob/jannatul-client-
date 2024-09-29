@@ -1,5 +1,9 @@
-import { format } from "date-fns";
+import { format, isValid } from "date-fns";
 
 export const formatDate = (dateString) => {
-  return format(new Date(dateString), "dd MMMM, yyyy");
+  const date = new Date(dateString);
+  if (!isValid(date)) {
+    return ""; // Return an empty string for invalid dates
+  }
+  return format(date, "dd MMMM, yyyy");
 };

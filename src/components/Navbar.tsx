@@ -55,7 +55,7 @@ const Header = () => {
             <li className="relative">
               <Link
                 className="rounded-lg backdrop-blur-[2px] p-1 inline-block"
-                to={"/cart"}
+                to={"/orders"}
               >
                 <ShoppingCart size={24} />
               </Link>

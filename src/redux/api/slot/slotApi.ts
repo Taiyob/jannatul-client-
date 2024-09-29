@@ -9,6 +9,13 @@ const slotApi = baseApi.injectEndpoints({
     //     body: serviceInfo,
     //   }),
     // }),
+    getAvailableSlots: builder.query({
+      query: () => ({
+        url: `/services/slots/availability`,
+        method: "GET",
+      }),
+      //invalidatesTags: ["user"],
+    }),
     getSlotByService: builder.query({
       query: (id) => ({
         url: `/services/slots/${id}`,
@@ -16,7 +23,14 @@ const slotApi = baseApi.injectEndpoints({
       }),
       //invalidatesTags: ["user"],
     }),
+    getSlotsById: builder.query({
+      query: (id) => ({
+        url: `/services/slots/slot/${id}`,
+        method: "GET",
+      }),
+      //invalidatesTags: ["user"],
+    }),
   }),
 });
 
-export const { useGetSlotByServiceQuery } = slotApi;
+export const { useGetSlotByServiceQuery, useGetSlotsByIdQuery } = slotApi;
