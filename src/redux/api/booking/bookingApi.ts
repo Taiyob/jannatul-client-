@@ -11,19 +11,31 @@ const BookingApi = baseApi.injectEndpoints({
     }),
     getBooking: builder.query({
       query: () => ({
-        url: `/services`,
+        url: `/bookings`,
         method: "GET",
       }),
       //invalidatesTags: ["user"],
     }),
-    getSingleBooking: builder.query({
-      query: (id) => ({
-        url: `/services/${id}`,
+    getmyBooking: builder.query({
+      query: () => ({
+        url: `/bookings/my-bookings`,
         method: "GET",
       }),
       //invalidatesTags: ["user"],
+    }),
+    completeBooking: builder.mutation({
+      query: (args) => ({
+        url: `/bookings/${args.id}`,
+        method: "PUT",
+        body: args.data,
+      }),
     }),
   }),
 });
 
-export const { useCreateBookingMutation } = BookingApi;
+export const {
+  useCreateBookingMutation,
+  useGetBookingQuery,
+  useGetmyBookingQuery,
+  useCompleteBookingMutation,
+} = BookingApi;

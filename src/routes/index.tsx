@@ -12,6 +12,14 @@ import AdminLayout from "../components/layouts/AdminLayout";
 import UserLayout from "../components/layouts/UserLayout";
 import AdminDashboardHome from "../pages/AdminDashboardHome";
 import UserDashboardHome from "../pages/UserDashboardHome";
+import CreateService from "../pages/CreateService";
+import CreateSlot from "../pages/CreateSlot";
+import BookingList from "../pages/BookingList";
+import MyBookingList from "../pages/MyBookingList";
+import Services from "../pages/Services";
+import Unauthenticate from "../components/Unauthenticate";
+import AdminRoute from "./AdminRoute";
+import ProtectedRoute from "./ProtectedRoute";
 
 export const router = createBrowserRouter([
   {
@@ -38,6 +46,10 @@ export const router = createBrowserRouter([
         path: "/bookings/:id",
         element: <Booking />,
       },
+      {
+        path: "/services",
+        element: <Services />,
+      },
     ],
   },
   {
@@ -49,22 +61,56 @@ export const router = createBrowserRouter([
     element: <Login />,
   },
   {
+    path: "/unauthorize",
+    element: (
+      <Unauthenticate
+        message="You are not authorized!!!"
+        address="/"
+        label="Back"
+      />
+    ),
+  },
+  {
     path: "/dashboard/admin",
-    element: <AdminLayout />,
+    element: (
+      <AdminRoute>
+        <AdminLayout />
+      </AdminRoute>
+    ),
     children: [
       {
         index: true,
         element: <AdminDashboardHome />,
       },
+      {
+        path: "create-service",
+        element: <CreateService />,
+      },
+      {
+        path: "create-slot",
+        element: <CreateSlot />,
+      },
+      {
+        path: "booking-list",
+        element: <BookingList />,
+      },
     ],
   },
   {
     path: "/dashboard/user",
-    element: <UserLayout />,
+    element: (
+      <ProtectedRoute>
+        <UserLayout />
+      </ProtectedRoute>
+    ),
     children: [
       {
         index: true,
         element: <UserDashboardHome />,
+      },
+      {
+        path: "my-list",
+        element: <MyBookingList />,
       },
     ],
   },
