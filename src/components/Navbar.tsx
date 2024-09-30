@@ -39,9 +39,9 @@ const Header = () => {
             <li>
               <Link
                 className="rounded-lg backdrop-blur-[2px] p-1 inline-block"
-                to={"/products"}
+                to={"/services"}
               >
-                Cars
+                Services
               </Link>
             </li>
             <li>
@@ -51,6 +51,16 @@ const Header = () => {
               >
                 About
               </a>
+            </li>
+            <li>
+              {user?.email && (
+                <Link
+                  to={`/dashboard/${user.userRole}`}
+                  className="rounded-lg backdrop-blur-[2px] p-1 inline-block"
+                >
+                  Dashboard
+                </Link>
+              )}
             </li>
             <li className="relative">
               <Link
@@ -80,7 +90,6 @@ const Header = () => {
                   // onClick={handleToggleTheme}
                   className="rounded-lg backdrop-blur-[2px] p-1 inline-block"
                 >
-                  {/* <Moon size={24} /> */}
                   <User size={24} />
                 </Link>
               )}

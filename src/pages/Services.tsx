@@ -1,6 +1,6 @@
 import React from "react";
 import { useGetServiceQuery } from "../redux/api/service/serviceApi";
-import ServiceCard from "./ServiceCard";
+import ServiceCard from "../components/ServiceCard";
 import { SerializedError } from "@reduxjs/toolkit";
 
 const Services = () => {
@@ -13,14 +13,11 @@ const Services = () => {
     return <div>Error: {errorMessage}</div>;
   }
 
-  const services = data?.data || [];
-  const threeServices = services.slice(0, 3);
-
   return (
     <div className="container">
-      <h1 className="text-4xl font-bold my-10">Feature Services</h1>
+      <h1 className="text-4xl font-bold my-10">All Services</h1>
       <div className="grid lg:grid-cols-3 md:grid-cols-2 grid-cols-1 gap-10">
-        {threeServices.map((service) => (
+        {data?.data.map((service) => (
           <ServiceCard key={service._id} service={service} />
         ))}
       </div>

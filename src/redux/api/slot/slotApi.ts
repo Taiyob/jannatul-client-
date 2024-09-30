@@ -2,13 +2,13 @@ import { baseApi } from "../baseApi";
 
 const slotApi = baseApi.injectEndpoints({
   endpoints: (builder) => ({
-    // createService: builder.mutation({
-    //   query: (serviceInfo) => ({
-    //     url: "/services",
-    //     method: "POST",
-    //     body: serviceInfo,
-    //   }),
-    // }),
+    createSlot: builder.mutation({
+      query: (slotInfo) => ({
+        url: "/services/slots",
+        method: "POST",
+        body: slotInfo,
+      }),
+    }),
     getAvailableSlots: builder.query({
       query: () => ({
         url: `/services/slots/availability`,
@@ -33,4 +33,8 @@ const slotApi = baseApi.injectEndpoints({
   }),
 });
 
-export const { useGetSlotByServiceQuery, useGetSlotsByIdQuery } = slotApi;
+export const {
+  useCreateSlotMutation,
+  useGetSlotByServiceQuery,
+  useGetSlotsByIdQuery,
+} = slotApi;
